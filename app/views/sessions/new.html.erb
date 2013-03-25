@@ -2,19 +2,26 @@
 	<p id="notice"><%= flash[:alert] %></p>
 <% end %>
 
-<%= form_tag do %>
-	<fieldset>
+<div style="text-align: center">
+	<%= form_tag({},{:class => 'form-horizontal', :style => "display:inline-block" }) do %>
 		<legend>Please Log In</legend>
-		<div>
-			<%= label_tag :name, 'User Name:' %>
-			<%= text_field_tag :name, params[:name] %>
+		<div class="control-group">
+			<%= label_tag :name, 'User Name:', :class =>"control-label" %>
+			<div class="controls">
+				<%= text_field_tag :name, params[:name] %>
+			</div>
 		</div>
-		<div>
-			<%= label_tag :password, 'Password:' %>
-			<%= password_field_tag :password, params[:password] %>
+		<div class="control-group">
+			<%= label_tag :password, 'Password:',  :class =>"control-label" %>
+			<div class="controls">
+				<%= password_field_tag :password, params[:password] %>
+			</div>
 		</div>
-		<div>
-			<%= submit_tag "Login" %>
+		<div class="control-group">
+			<div class="controls">
+				<%= submit_tag "Login", :class => "btn btn-primary" %>
+			</div>
 		</div>
-	</fieldset>
-<% end %>
+	<% end %>
+</div
+
