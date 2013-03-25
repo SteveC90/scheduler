@@ -1,15 +1,15 @@
-<p id="notice"><%= notice %></p>
+<% if notice %>
+  <p id="notice"><%= notice %></p>
+<% end %>
 
-<p>
-  <b>Name:</b>
-  <%= @user.name %>
-</p>
+<h1><%= @user.name %></h1>
 
-<p>
-  <b>Password digest:</b>
-  <%= @user.password_digest %>
-</p>
+<% if @user.photo.exists? %>
+	<%= image_tag @user.photo(:large) %>
+<% else %>
+	<%= image_tag 'user_default_large.jpg' %>
+<% end %>
 
+<br /><br />
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

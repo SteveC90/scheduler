@@ -7,6 +7,7 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Role</th>
       <th></th>
       <th></th>
       <th></th>
@@ -16,14 +17,22 @@
     <% @users.each do |user| %>
       <tr>
         <td><%= user.name %></td>
+        <td><%= user.role %></td>
         <td>
           <% if user.photo.exists? %>
             <%= image_tag user.photo(:thumb) %>
             <% else %>
-            <%= image_tag 'user_default.png' %>
+            <%= image_tag 'user_default.jpg' %>
           <% end %>
         </td>
-        <td><%= link_to 'Show', user %></td>
+        <td><%= link_to 'View', user %></td>
+        <% if user.id == session[:user_id] || (session[:user_id] && User.find_by_id(session[:user_id]).role == User::ROLES[2]) %>
+        <td><%= link_to 'Edit', edit_user_path(user) %></td>
+        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% else %>
+        <td></td>
+        <td></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

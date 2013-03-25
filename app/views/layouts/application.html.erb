@@ -29,7 +29,7 @@
             <% if User.find_by_id(session[:user_id]).photo.exists? %>
             <%= image_tag User.find_by_id(session[:user_id]).photo(:thumb) %>
             <% else %>
-            <%= image_tag 'user_default.png' %>
+            <%= image_tag 'user_default.jpg' %>
             <% end %>
           </li>
         <% end %>
