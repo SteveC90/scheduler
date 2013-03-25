@@ -41,7 +41,7 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should update user" do
-    patch :update, id: @user, user: @input_attributes
+    put :update, id: @user, user: @input_attributes
     assert_redirected_to users_path
   end
 

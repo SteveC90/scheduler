@@ -1,4 +1,15 @@
 Scheduler::Application.routes.draw do
+  get 'admin' => 'admin#index'
+  controller :sessions do
+    get 'login' => :new
+    post 'login' => :create
+    delete 'logout' => :destroy
+  end
+
+  get "sessions/create"
+
+  get "sessions/destroy"
+
   resources :users
 
 
@@ -51,7 +62,7 @@ Scheduler::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'pages#index'
+  root :to => 'pages#index', as: 'home'
 
   # See how all your routes lay out with "rake routes"
 
