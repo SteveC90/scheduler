@@ -24,7 +24,7 @@ gem 'jquery-rails'
 
 gem 'bootstrap-sass'
 
-gem "paperclip", '~> 3.0'
+gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
