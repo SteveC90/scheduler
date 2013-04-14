@@ -1,4 +1,10 @@
 Scheduler::Application.routes.draw do
+  resources :sections
+
+
+  resources :instructors
+
+
   resources :courses
 
 
@@ -15,6 +21,8 @@ Scheduler::Application.routes.draw do
   get "sessions/create"
 
   get "sessions/destroy"
+
+  post "dynamic_courses/:id" => "sections#dynamic_courses"
 
   resources :users
 

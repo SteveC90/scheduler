@@ -1,0 +1,57 @@
+<%= form_for(@section) do |f| %>
+  <% if @section.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@section.errors.count, "error") %> prohibited this section from being saved:</h2>
+
+      <ul>
+      <% @section.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :course, "Subject" %><br />
+    <%= select_tag 'subject_id', options_for_select(Subject.all.collect{ |s| [s.abrev, s.id]}), :include_blank => true %>
+  </div>  
+  <div class="field">
+    <%= f.label :course %><br />
+    <%= f.select :course_id, {} %>
+  </div>
+  <div class="field">
+    <%= f.label :year %><br />
+    <%= f.number_field :year %>
+  </div>
+  <div class="field">
+    <%= f.label :term %><br />
+    <%= f.text_field :term %>
+  </div>
+  <div class="field">
+    <%= f.label :section %><br />
+    <%= f.text_field :section %>
+  </div>
+  <div class="field">
+    <%= f.label :crn %><br />
+    <%= f.number_field :crn %>
+  </div>
+  <div class="field">
+    <%= f.label :days %><br />
+    <%= f.text_area :days %>
+  </div>
+  <div class="field">
+    <%= f.label :time_start %><br />
+    <%= f.text_area :time_start %>
+  </div>
+  <div class="field">
+    <%= f.label :time_end %><br />
+    <%= f.text_area :time_end %>
+  </div>
+  <div class="field">
+    <%= f.label :instructor %><br />
+    <%= f.text_field :instructor %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

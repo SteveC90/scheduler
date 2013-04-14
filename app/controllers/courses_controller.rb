@@ -43,7 +43,7 @@ class CoursesController < ApplicationController
   def edit
     @course = Course.find(params[:id])
 
-    @subjects = Subject.all
+    # @subjects = Subject.all
   end
 
   # POST /courses

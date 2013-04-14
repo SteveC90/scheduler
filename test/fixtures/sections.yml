@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  year: 1
+  term: MyString
+  section: MyString
+  crn: 1
+  days: MyText
+  time_start: MyText
+  time_end: MyText
+  instructor: 
+  course: 
+
+two:
+  year: 1
+  term: MyString
+  section: MyString
+  crn: 1
+  days: MyText
+  time_start: MyText
+  time_end: MyText
+  instructor: 
+  course: 

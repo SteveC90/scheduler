@@ -1,0 +1,7 @@
+$('#section_course_id').empty();
+<% for course in @courses %>
+
+      $('#section_course_id').append($("<option></option>").attr("value",<%= course.id %>).text('<%= course.number %>'));
+
+
+<% end %>

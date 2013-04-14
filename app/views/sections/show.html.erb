@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Year:</b>
+  <%= @section.year %>
+</p>
+
+<p>
+  <b>Term:</b>
+  <%= @section.term %>
+</p>
+
+<p>
+  <b>Section:</b>
+  <%= @section.section %>
+</p>
+
+<p>
+  <b>Crn:</b>
+  <%= @section.crn %>
+</p>
+
+<p>
+  <b>Days:</b>
+  <%= @section.days %>
+</p>
+
+<p>
+  <b>Time start:</b>
+  <%= @section.time_start %>
+</p>
+
+<p>
+  <b>Time end:</b>
+  <%= @section.time_end %>
+</p>
+
+<p>
+  <b>Instructor:</b>
+  <%= @section.instructor %>
+</p>
+
+<p>
+  <b>Course:</b>
+  <%= @section.course %>
+</p>
+
+
+<%= link_to 'Edit', edit_section_path(@section) %> |
+<%= link_to 'Back', sections_path %>
