@@ -2,7 +2,7 @@
   <% if notice %>
   <p id="notice"><%= notice %></p>
   <% end %>
-
+<% if session[:user_id] %>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -26,7 +26,7 @@
           <% end %>
         </td>
         <td><%= link_to 'View', user %></td>
-        <% if user.id == session[:user_id] || (session[:user_id] && User.find_by_id(session[:user_id]).role == User::ROLES[2]) %>
+        <% if user.id == session[:user_id] || (User.find_by_id(session[:user_id]).role == User::ROLES[2]) %>
         <td><%= link_to 'Edit', edit_user_path(user) %></td>
         <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% else %>
@@ -37,6 +37,7 @@
     <% end %>
   </tbody>
 </table>
-
-<br />
+<% else %>
+<p id="notice">You must be signed in to view users.</p>
+<% end %>
 

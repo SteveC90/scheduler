@@ -1,15 +1,19 @@
+<h1>User Profile</h1>
 <% if notice %>
   <p id="notice"><%= notice %></p>
 <% end %>
+<% if session[:user_id] %>
+	<h2><%= @user.name %></h2>
 
-<h1><%= @user.name %></h1>
+	<% if @user.photo.exists? %>
+		<%= image_tag @user.photo(:large) %>
+	<% else %>
+		<%= image_tag 'user_default_large.jpg' %>
+	<% end %>
 
-<% if @user.photo.exists? %>
-	<%= image_tag @user.photo(:large) %>
+	<br /><br />
 <% else %>
-	<%= image_tag 'user_default_large.jpg' %>
+	<p id="notice">You must be signed in to view profiles.<%= notice %></p>
 <% end %>
-
-<br /><br />
 
 <%= link_to 'Back', users_path %>
