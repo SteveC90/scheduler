@@ -35,22 +35,50 @@
     <%= f.label :crn %><br />
     <%= f.number_field :crn %>
   </div>
-  <div class="field">
-    <%= f.label :days %><br />
-    <%= f.text_area :days %>
-  </div>
-  <div class="field">
-    <%= f.label :time_start %><br />
-    <%= f.text_area :time_start %>
-  </div>
-  <div class="field">
-    <%= f.label :time_end %><br />
-    <%= f.text_area :time_end %>
-  </div>
-  <div class="field">
+  <table class="table">
+    <div class="field">
+      <tr>
+        <td></td>
+        <td>Monday</td>
+        <td>Tuesday</td>
+        <td>Wednesday</td>
+        <td>Thursday</td>
+        <td>Friday</td>
+      </tr>
+      <tr>
+        <td><%= f.label :days %></td>
+        <td><%= check_box_tag "section[days][monday]", "1",  @section.days[:monday] == "1" ? true : false %>
+        <td><%= check_box_tag "section[days][tuesday]", "1",  @section.days[:tuesday] == "1" ? true : false %></td>
+        <td><%= check_box_tag "section[days][wednesday]", "1",  @section.days[:wednesday] == "1" ? true : false %></td>
+        <td><%= check_box_tag "section[days][thursday]", "1",  @section.days[:thursday] == "1" ? true : false %></td>
+        <td><%= check_box_tag "section[days][friday]", "1",  @section.days[:friday] == "1" ? true : false %></td>
+      </tr>
+    </div>
+    <div class="field">
+      <tr  class="section_time">
+        <td><%= f.label :time_start, "Start Time" %></td>
+        <td><%= text_field_tag "section[time_start][monday]", @section.time_start[:monday], maxlength: 4 %></td>
+        <td><%= text_field_tag "section[time_start][tuesday]", @section.time_start[:tuesday], maxlength: 4 %></td>
+        <td><%= text_field_tag "section[time_start][wednesday]", @section.time_start[:wednesday], maxlength: 4 %></td>
+        <td><%= text_field_tag "section[time_start][thursday]", @section.time_start[:thursday], maxlength: 4 %></td>
+        <td><%= text_field_tag "section[time_start][friday]", @section.time_start[:friday], maxlength: 4 %></td>
+      </tr>
+    </div>
+    <div class="field">
+      <tr  class="section_time">
+        <td><%= f.label :time_end, "End Time" %></td>
+        <td><%= text_field_tag "section[time_end][monday]", @section.time_end[:monday], maxlength: 4 %></td>
+        <td><%= text_field_tag "section[time_end][tuesday]", @section.time_end[:tuesday], maxlength: 4 %></td>
+        <td><%= text_field_tag "section[time_end][wednesday]", @section.time_end[:wednesday], maxlength: 4 %></td>
+        <td><%= text_field_tag "section[time_end][thursday]", @section.time_end[:thursday], maxlength: 4 %></td>
+        <td><%= text_field_tag "section[time_end][friday]", @section.time_end[:friday], maxlength: 4 %></td>
+      </tr>
+    </div>
+  </table>
+<!--   <div class="field">
     <%= f.label :instructor %><br />
     <%= f.text_field :instructor %>
-  </div>
+  </div> -->
   <div class="actions">
     <%= f.submit %>
   </div>
