@@ -41,6 +41,7 @@
   </div>
   <table class="table">
     <div class="field">
+      <thead>
       <tr>
         <td></td>
         <td>Monday</td>
@@ -49,14 +50,7 @@
         <td>Thursday</td>
         <td>Friday</td>
       </tr>
-      <tr>
-        <td><%= f.label :days %></td>
-        <td><%= check_box_tag "section[days][monday]", "1",  @section.days[:monday] == "1" ? true : false %>
-        <td><%= check_box_tag "section[days][tuesday]", "1",  @section.days[:tuesday] == "1" ? true : false %></td>
-        <td><%= check_box_tag "section[days][wednesday]", "1",  @section.days[:wednesday] == "1" ? true : false %></td>
-        <td><%= check_box_tag "section[days][thursday]", "1",  @section.days[:thursday] == "1" ? true : false %></td>
-        <td><%= check_box_tag "section[days][friday]", "1",  @section.days[:friday] == "1" ? true : false %></td>
-      </tr>
+      </thead>
     </div>
     <div class="field">
       <tr  class="section_time">
