@@ -10,6 +10,7 @@
       <th>Subject</th>
       <th>Number</th>
       <th>Name</th>
+      <th>Sections</th>
       <th></th>
       <th></th>
     </tr>
@@ -19,6 +20,7 @@
     <td><%= course.subject.abrev %></td>
     <td><%= course.number %></td>
     <td><%= course.name %></td>
+    <td><%= course.sections.length %></td>
     <td><%= link_to 'Edit', edit_course_path(course) %></td>
     <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
