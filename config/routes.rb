@@ -5,7 +5,7 @@ Scheduler::Application.routes.draw do
   resources :instructors
 
 
-  resources :courses
+  resources :courses, :except => :show
 
 
   resources :subjects

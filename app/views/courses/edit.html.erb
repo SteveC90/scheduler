@@ -1,6 +1,6 @@
 <h1>Editing course</h1>
-
+<% if (session[:user_id] && User.find_by_id(session[:user_id]).role != User::ROLES[0]) %>
 <%= render 'form' %>
-
-<%= link_to 'Show', @course %> |
-<%= link_to 'Back', courses_path %>
+<% else %>
+<p id="notice">You do not have permission to edit a course.</p>
+<% end %>
