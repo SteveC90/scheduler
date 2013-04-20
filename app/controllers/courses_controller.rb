@@ -95,8 +95,12 @@ class CoursesController < ApplicationController
     @course.destroy
 
     respond_to do |format|
-      format.html { redirect_to courses_url }
-      # format.json { head :no_content }
+      if @course.destroy
+        format.html { redirect_to courses_url }
+        # format.json { head :no_content }
+      else
+        format.html { redirect_to courses_url, notice: "Can\'t delete this course because it has sections."}
+      end
     end
   end
 end
