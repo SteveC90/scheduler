@@ -8,7 +8,7 @@ Scheduler::Application.routes.draw do
   resources :courses, :except => :show
 
 
-  resources :subjects
+  resources :subjects, :except => :show
 
 
   get 'admin' => 'admin#index'

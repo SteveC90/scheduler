@@ -5,21 +5,25 @@ class SubjectsController < ApplicationController
     @subjects = Subject.all
 
     respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @subjects }
+      if !session[:user_id]
+        format.html {redirect_to home_url, notice: 'You must be logged in to access that page!'}
+      else 
+        format.html # index.html.erb
+        #format.json { render json: @subjects }
+      end
     end
   end
 
   # GET /subjects/1
   # GET /subjects/1.json
-  def show
-    @subject = Subject.find(params[:id])
+  # def show
+  #   @subject = Subject.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @subject }
-    end
-  end
+  #   respond_to do |format|
+  #     format.html # show.html.erb
+  #     format.json { render json: @subject }
+  #   end
+  # end
 
   # GET /subjects/new
   # GET /subjects/new.json
@@ -27,8 +31,12 @@ class SubjectsController < ApplicationController
     @subject = Subject.new
 
     respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @subject }
+      if !session[:user_id] || User.find_by_id(session[:user_id]).role == User::ROLES[0]
+        format.html {redirect_to subjects_url, notice: 'You do not have permission to create subjects'}
+      else
+        format.html # new.html.erb
+        # format.json { render json: @subject }
+      end
     end
   end
 
@@ -44,11 +52,11 @@ class SubjectsController < ApplicationController
 
     respond_to do |format|
       if @subject.save
-        format.html { redirect_to @subject, notice: 'Subject was successfully created.' }
-        format.json { render json: @subject, status: :created, location: @subject }
+        format.html { redirect_to subjects_url, notice: 'Subject was successfully created.' }
+        # format.json { render json: @subject, status: :created, location: @subject }
       else
         format.html { render action: "new" }
-        format.json { render json: @subject.errors, status: :unprocessable_entity }
+        # format.json { render json: @subject.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -60,11 +68,11 @@ class SubjectsController < ApplicationController
 
     respond_to do |format|
       if @subject.update_attributes(params[:subject])
-        format.html { redirect_to @subject, notice: 'Subject was successfully updated.' }
-        format.json { head :no_content }
+        format.html { redirect_to subjects_url, notice: 'Subject was successfully updated.' }
+        # format.json { head :no_content }
       else
         format.html { render action: "edit" }
-        format.json { render json: @subject.errors, status: :unprocessable_entity }
+        # format.json { render json: @subject.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -76,8 +84,12 @@ class SubjectsController < ApplicationController
     @subject.destroy
 
     respond_to do |format|
-      format.html { redirect_to subjects_url }
-      format.json { head :no_content }
+      if @subject.destroy
+        format.html { redirect_to subjects_url }
+        # format.json { head :no_content }
+      else
+        format.html {redirect_to subjects_url, notice: "Can\'t delete this subject because it has courses."}
+      end
     end
   end
 end

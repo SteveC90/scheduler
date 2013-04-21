@@ -16,18 +16,18 @@ class CoursesController < ApplicationController
 
   # GET /courses/1
   # GET /courses/1.json
-  def show
-    @course = Course.find(params[:id])
+  # def show
+  #   @course = Course.find(params[:id])
 
-    respond_to do |format|
-      if !session[:user_id]
-        format.html {redirect_to home_url, notice: 'You must be logged in to access that page!'}
-      else
-        format.html # show.html.erb
-        format.json { render json: @course }
-      end
-    end
-  end
+  #   respond_to do |format|
+  #     if !session[:user_id]
+  #       format.html {redirect_to home_url, notice: 'You must be logged in to access that page!'}
+  #     else
+  #       format.html # show.html.erb
+  #       format.json { render json: @course }
+  #     end
+  #   end
+  # end
 
   # GET /courses/new
   # GET /courses/new.json
