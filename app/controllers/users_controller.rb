@@ -81,10 +81,10 @@ class UsersController < ApplicationController
     respond_to do |format|
       if session[:user_id]
         format.html { redirect_to users_url }
+      #format.json { head :no_content }
       else
         format.html { redirect_to home_url }
       end
-      format.json { head :no_content }
     end
   end
 end

@@ -81,7 +81,6 @@ class SubjectsController < ApplicationController
   # DELETE /subjects/1.json
   def destroy
     @subject = Subject.find(params[:id])
-    @subject.destroy
 
     respond_to do |format|
       if @subject.destroy

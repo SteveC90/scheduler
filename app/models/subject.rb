@@ -3,14 +3,13 @@ class Subject < ActiveRecord::Base
   has_many :courses
   validates :name, :abrev, presence: true, uniqueness: true
 
-  before_destroy :ensure_not_referenced_by_any_course
+  before_destroy :check_for_courses
 
   private
-  	def ensure_not_referenced_by_any_course
+  	def check_for_courses
   		if courses.empty?
   			return true
   		else
-  			errors.add(:base, 'This subject is referenced by 1 or more courses')
   			return false
   		end
   	end

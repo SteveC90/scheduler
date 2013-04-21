@@ -16,12 +16,19 @@
     <td><%= instructor.name %></td>
     <td><%= instructor.email %></td>
     <td><%= instructor.sections.length %></td>
+    <% if User.find_by_id(session[:user_id]).role != User::ROLES[0] %>
     <td><%= link_to 'Edit', edit_instructor_path(instructor) %></td>
     <td><%= link_to 'Destroy', instructor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <%else%>
+    <td></td>
+    <td></td>
+    <%end%>
   </tr>
 <% end %>
 </table>
 
 <br />
 
+<% if User.find_by_id(session[:user_id]).role != User::ROLES[0] %>
 <%= link_to 'New Instructor', new_instructor_path %>
+<%end%>

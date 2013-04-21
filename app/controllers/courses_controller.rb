@@ -9,7 +9,7 @@ class CoursesController < ApplicationController
         format.html {redirect_to home_url, notice: 'You must be logged in to access that page!'}
       else
         format.html # index.html.erb
-        format.json { render json: @courses }
+        # format.json { render json: @courses }
       end
     end
   end
@@ -41,10 +41,10 @@ class CoursesController < ApplicationController
         format.html {redirect_to home_url, notice: 'You do not have permission to create courses'}
       elsif Subject.count == 0
         format.html { redirect_to courses_url, notice: 'Cannot create courses without any subjects.' }
-        format.json { head :no_content }
+        # format.json { head :no_content }
       else
         format.html # new.html.erb
-        format.json { render json: @course }
+        # format.json { render json: @course }
        end
     end
   end
@@ -92,7 +92,6 @@ class CoursesController < ApplicationController
   # DELETE /courses/1.json
   def destroy
     @course = Course.find(params[:id])
-    @course.destroy
 
     respond_to do |format|
       if @course.destroy

@@ -7,11 +7,12 @@ class Course < ActiveRecord::Base
   validates :number, presence: true, length: { is: 3}, numericality: { only_integer: true }
   validates_associated :subject
 
-  def check_for_sections
-  	if sections.empty?
-  		return true
-  	else
-  		return false
-  	end
-  end
+  private
+    def check_for_sections
+    	if sections.empty?
+    		return true
+    	else
+    		return false
+    	end
+    end
 end
