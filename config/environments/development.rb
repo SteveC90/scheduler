@@ -35,5 +35,15 @@ Scheduler::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 
-  Paperclip.options[:command_path] = "/usr/bin/"
+  Paperclip.options[:command_path] = "/usr/bin"
+
+  config.paperclip_defaults = {
+      :storage => :s3,
+      :s3_credentials => {
+        :bucket => 'mines.edu',
+        :access_key_id => ENV['S3_KEY'],
+        :secret_access_key => ENV['S3_SECRET']
+      }
+  }
+
 end

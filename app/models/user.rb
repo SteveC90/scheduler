@@ -5,5 +5,5 @@ class User < ActiveRecord::Base
 	has_secure_password
 
 
-	has_attached_file :photo, :styles => { :thumb => "38x38>", :large => "300x300>"}
+	has_attached_file :photo, :path => "cs446/chavez/#{Rails.env}:url", :styles => { :thumb => "38x38>", :large => "300x300>"}
 end
