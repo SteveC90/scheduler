@@ -1,6 +1,16 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <b>Course:</b>
+  <%= @section.course.subject.abrev+" "+@section.course.number.to_s %>
+</p>
+
+<p>
+  <b>Instructor:</b>
+  <%= @section.instructor.name %>
+</p>
+
+<p>
   <b>Year:</b>
   <%= @section.year %>
 </p>
@@ -16,35 +26,41 @@
 </p>
 
 <p>
-  <b>Crn:</b>
+  <b>CRN:</b>
   <%= @section.crn %>
 </p>
 
 <p>
   <b>Days:</b>
-  <%= @section.days %>
 </p>
+<div  style="max-width:500px">
+  <table class = "table" >
+    <thead>
+      <% @section.time_start.each do |key, value| %>
+        <% if value!="" %>
+          <th><%= key.capitalize %></th>
+        <%end%>
+      <%end%>
+    </thead>
+    <tr>
+      <% @section.time_start.each do |key, value| %>
+        <% if value!="" %>
+          <td><%= value %></td>
+        <%end%>
+      <%end%>
+    </tr>
+    <tr>
+      <% @section.time_start.each do |key, value| %>
+        <% if value!="" %>
+          <td><%= @section.time_end[key.to_sym] %></td>
+        <%end%>
+      <%end%>
+    </tr>
+  </table>
+</div>
 
-<p>
-  <b>Time start:</b>
-  <%= @section.time_start %>
-</p>
 
-<p>
-  <b>Time end:</b>
-  <%= @section.time_end %>
-</p>
-
-<p>
-  <b>Instructor:</b>
-  <%= @section.instructor %>
-</p>
-
-<p>
-  <b>Course:</b>
-  <%= @section.course %>
-</p>
-
-
+<% if User.find_by_id(session[:user_id]).role != User::ROLES[0] %>
 <%= link_to 'Edit', edit_section_path(@section) %> |
+<%end%>
 <%= link_to 'Back', sections_path %>
