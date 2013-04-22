@@ -5,8 +5,12 @@ class UsersController < ApplicationController
     @users = User.order(:name)
 
     respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @users }
+      if !session[:user_id]
+        format.html {redirect_to home_url, notice: 'You must be logged in to access that page!'}
+      else
+        format.html # index.html.erb
+        # format.json { render json: @users }
+      end
     end
   end
 
@@ -16,8 +20,12 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @user }
+      if !session[:user_id]
+        format.html {redirect_to home_url, notice: 'You must be logged in to access that page!'}
+      else
+        format.html # show.html.erb
+        # format.json { render json: @user }
+      end
     end
   end
 
@@ -28,13 +36,16 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @user }
+      # format.json { render json: @user }
     end
   end
 
   # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
+    if !session[:user_id] || (session[:user_id] != @user.id && User.find_by_id(session[:user_id]).role != User::ROLES[2])
+      redirect_to home_url, notice: "You cannot edit another users account."
+    end
   end
 
   # POST /users
@@ -44,11 +55,12 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
+        session[:user_id] = @user.id
         format.html { redirect_to home_url, notice: "User #{@user.name} was successfully created." }
-        format.json { render json: @user, status: :created, location: @user }
+        # format.json { render json: @user, status: :created, location: @user }
       else
         format.html { render action: "new" }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        # format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -61,10 +73,10 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.update_attributes(params[:user])
         format.html { redirect_to users_url, notice: "User #{@user.name} was successfully updated." }
-        format.json { head :no_content }
+        # format.json { head :no_content }
       else
         format.html { render action: "edit" }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        # format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end

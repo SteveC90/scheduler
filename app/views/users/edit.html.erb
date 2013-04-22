@@ -1,7 +1,5 @@
 <h1>Editing user</h1>
 
-<% if session[:user_id] == @user.id || (session[:user_id] && User.find_by_id(session[:user_id]).role == User::ROLES[2]) %>
+
 <%= render 'form' %>
-<% else %>
-<p id="notice">You cannot edit another users account. (Unless you are an admin in which case you must be signed in)</p>
-<% end %>
+

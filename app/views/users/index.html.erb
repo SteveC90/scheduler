@@ -2,7 +2,6 @@
   <% if notice %>
   <p id="notice"><%= notice %></p>
   <% end %>
-<% if session[:user_id] %>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -37,7 +36,4 @@
     <% end %>
   </tbody>
 </table>
-<% else %>
-<p id="notice">You must be signed in to view users.</p>
-<% end %>
 

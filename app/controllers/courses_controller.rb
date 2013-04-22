@@ -38,9 +38,9 @@ class CoursesController < ApplicationController
 
     respond_to do |format|
       if !session[:user_id] || User.find_by_id(session[:user_id]).role == User::ROLES[0]
-        format.html {redirect_to home_url, notice: 'You do not have permission to create courses'}
-      elsif Subject.count == 0
-        format.html { redirect_to courses_url, notice: 'Cannot create courses without any subjects.' }
+        format.html {redirect_to home_url, notice: 'You do not have permission to access that page!'}
+      # elsif Subject.count == 0
+      #   format.html { redirect_to courses_url, notice: 'Cannot create courses without any subjects.' }
         # format.json { head :no_content }
       else
         format.html # new.html.erb
@@ -52,8 +52,10 @@ class CoursesController < ApplicationController
   # GET /courses/1/edit
   def edit
     @course = Course.find(params[:id])
-
+    if !session[:user_id] || User.find_by_id(session[:user_id]).role == User::ROLES[0]
+        redirect_to home_url, notice: 'You do not have permission to access that page!'
     # @subjects = Subject.all
+    end
   end
 
   # POST /courses
@@ -98,7 +100,7 @@ class CoursesController < ApplicationController
         format.html { redirect_to courses_url }
         # format.json { head :no_content }
       else
-        format.html { redirect_to courses_url, notice: "Can\'t delete this course because it has sections."}
+        format.html { redirect_to courses_url, notice: "Can\'t delete this course."}
       end
     end
   end

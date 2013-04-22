@@ -32,7 +32,7 @@ class InstructorsController < ApplicationController
 
     respond_to do |format|
       if !session[:user_id] || User.find_by_id(session[:user_id]).role == User::ROLES[0]
-        format.html {redirect_to home_url, notice: 'You do not have permission to create courses'}
+        format.html {redirect_to home_url, notice: 'You do not have permission to access that page!'}
       else
         format.html # new.html.erb
         #format.json { render json: @instructor }
@@ -43,6 +43,9 @@ class InstructorsController < ApplicationController
   # GET /instructors/1/edit
   def edit
     @instructor = Instructor.find(params[:id])
+    if !session[:user_id] || User.find_by_id(session[:user_id]).role == User::ROLES[0]
+        redirect_to home_url, notice: 'You do not have permission to access that page!'
+      end
   end
 
   # POST /instructors
@@ -87,7 +90,7 @@ class InstructorsController < ApplicationController
         format.html { redirect_to instructors_url }
         # format.json { head :no_content }
       else
-        format.html { redirect_to instructors_url, notice: "Can\'t delete this instructor since it has sections."}
+        format.html { redirect_to instructors_url, notice: "Can\'t delete this instructor!"}
       end
     end
   end

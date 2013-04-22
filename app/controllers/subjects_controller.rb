@@ -32,7 +32,7 @@ class SubjectsController < ApplicationController
 
     respond_to do |format|
       if !session[:user_id] || User.find_by_id(session[:user_id]).role == User::ROLES[0]
-        format.html {redirect_to subjects_url, notice: 'You do not have permission to create subjects'}
+        format.html {redirect_to subjects_url, notice: 'You do not have permission to access that page!'}
       else
         format.html # new.html.erb
         # format.json { render json: @subject }
@@ -43,6 +43,9 @@ class SubjectsController < ApplicationController
   # GET /subjects/1/edit
   def edit
     @subject = Subject.find(params[:id])
+    if !session[:user_id] || User.find_by_id(session[:user_id]).role == User::ROLES[0]
+      redirect_to home_url, notice: 'You do not have permission to access that page!'
+    end
   end
 
   # POST /subjects
@@ -87,7 +90,7 @@ class SubjectsController < ApplicationController
         format.html { redirect_to subjects_url }
         # format.json { head :no_content }
       else
-        format.html {redirect_to subjects_url, notice: "Can\'t delete this subject because it has courses."}
+        format.html {redirect_to subjects_url, notice: "Can\'t delete this subject."}
       end
     end
   end

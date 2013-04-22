@@ -44,6 +44,9 @@ class SectionsController < ApplicationController
   # GET /sections/1/edit
   def edit
     @section = Section.find(params[:id])
+    if !session[:user_id] || User.find_by_id(session[:user_id]).role == User::ROLES[0]
+      redirect_to home_url, notice: 'You do not have permission to access that page!'
+    end
   end
 
   # POST /sections
