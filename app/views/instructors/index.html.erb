@@ -34,5 +34,5 @@
 <br />
 
 <% if User.find_by_id(session[:user_id]).role != User::ROLES[0] %>
-<%= link_to 'New Instructor', new_instructor_path %>
+<%= link_to 'New Instructor', new_instructor_path, :class => 'btn' %>
 <%end%>

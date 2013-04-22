@@ -17,12 +17,21 @@
           <span class="icon-bar"></span>
         </button>
         <%= link_to "Schedule Miner v2.0", home_url, { :class => "brand"} %>
+
         <ul class="pull-right nav">
         <% if session[:user_id] == nil %>
       		<li><%= link_to 'Sign In', login_path %></li>
       		<li><%= link_to 'Create New Account', new_user_path %></li>
         <% else %>
-          <li><%= link_to 'View Users', users_url %></li>
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="">Pages<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><%= link_to 'Users', users_url %></li>
+              <li><%= link_to 'Subjects', subjects_url %></li>
+              <li><%= link_to 'Courses', courses_url %></li>
+              <li><%= link_to 'Instructors', instructors_url %></li>
+            </ul>
+          </li>
           <li><%= link_to 'Sign Out', logout_path, :method => :delete %></li>
           <li><%= link_to User.find_by_id(session[:user_id]).name, edit_user_path(session[:user_id]) %></li>
           <li>
