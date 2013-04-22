@@ -1,9 +1,9 @@
 <%= form_for(@instructor) do |f| %>
   <% if @instructor.errors.any? %>
-    <div id="error_explanation">
+    <div class="alert alert-error">
       <h2><%= pluralize(@instructor.errors.count, "error") %> prohibited this instructor from being saved:</h2>
 
-      <ul>
+      <ul class="nav nav-stacked">
       <% @instructor.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>

@@ -1,9 +1,9 @@
 <%= form_for(@subject) do |f| %>
   <% if @subject.errors.any? %>
-    <div id="error_explanation">
+    <div class="alert alert-error">
       <h2><%= pluralize(@subject.errors.count, "error") %> prohibited this subject from being saved:</h2>
 
-      <ul>
+      <ul class="nav nav-stacked">
       <% @subject.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
