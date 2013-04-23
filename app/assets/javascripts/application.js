@@ -14,3 +14,8 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require_tree .
+$(document).ready( function(){
+    window.setTimeout( function(){
+        $(".alert").slideUp();
+    }, 2000);
+});
