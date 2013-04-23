@@ -6,7 +6,7 @@ jQuery(document).ready(function() {
 		});
 		//$('#taken').hide();
 		$(this).text('');
-		$(this).append('<img src="/assets/icon_checkmark_green_small.png">');
+		$(this).replaceWith('<img src="/assets/icon_checkmark_green_small.png">');
 		return false;
 	});
 });

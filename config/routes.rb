@@ -26,7 +26,7 @@ Scheduler::Application.routes.draw do
 
   post "add/:course_id" => "courses#add"
 
-  match '/users/add_courses', :controller => 'users', :action => 'add_courses'
+  post "remove_course/:course_id" => "users#remove_course"
 
   resources :users
 

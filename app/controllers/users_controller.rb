@@ -1,4 +1,12 @@
 class UsersController < ApplicationController
+
+  def remove_course
+    @user = User.find(session[:user_id])
+    @course = Course.find(params[:course_id])
+
+    @user.courses.delete(@course);
+  end
+
   # GET /users
   # GET /users.json
   def index

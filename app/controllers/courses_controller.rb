@@ -22,7 +22,7 @@ class CoursesController < ApplicationController
 
     @user.courses << @course
 
-    redirect_to courses_url, notice: "Added #{@course.name} to list of completed classes."
+    #redirect_to courses_url, notice: "Added #{@course.name} to list of completed classes."
   end
   # GET /courses/1
   # GET /courses/1.json

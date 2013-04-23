@@ -3,14 +3,29 @@
   <p id="notice"><%= notice %></p>
 <% end %>
 
-
-<% if @user.photo.exists? %>
-	<%= image_tag @user.photo(:large) %>
-<% else %>
-	<%= image_tag 'user_default_large.jpg' %>
-<% end %>
-<h3><%= @user.name %></h3>
+<div class="container-fluid">
+  <div class="row-fluid">
+  	<div class="span6">
+			<% if @user.photo.exists? %>
+				<%= image_tag @user.photo(:large) %>
+			<% else %>
+				<%= image_tag 'user_default_large.jpg' %>
+			<% end %>
+			<h3><%= @user.name %></h3>
+		</div>
+		<div class="span6">
+			<h3>Completed Courses</h3><br />
+			<ul>
+			<% @user.courses.each do |course| %>
+			<li><%= course.subject.abrev+" "+course.number.to_s+" - "+course.name %> <a href=<%=course.id%> class="remove"><img src="/assets/delete-icon.png"></a></li>
+			<% end %>
+			</ul>
+		</div>
+	</div>
+</div>
 
 <br /><br />
 
-<%= link_to 'Back', users_path %>
+<%if User.find(session[:user_id])==@user || User.find(session[:user_id]).role == User::ROLES[2] %>
+<%= link_to 'Edit', edit_user_path(@user.id), :class => "btn" %>
+<% end %>
