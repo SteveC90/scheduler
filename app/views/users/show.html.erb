@@ -2,13 +2,14 @@
 <% if notice %>
   <p id="notice"><%= notice %></p>
 <% end %>
-<h2><%= @user.name %></h2>
+
 
 <% if @user.photo.exists? %>
 	<%= image_tag @user.photo(:large) %>
 <% else %>
 	<%= image_tag 'user_default_large.jpg' %>
 <% end %>
+<h3><%= @user.name %></h3>
 
 <br /><br />
 

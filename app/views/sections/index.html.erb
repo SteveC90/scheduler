@@ -1,16 +1,13 @@
 <h1>Listing sections</h1>
 
-<table>
+<table class="table table-striped">
   <thead>
     <th>Year</th>
     <th>Term</th>
     <th>Section</th>
-    <th>Crn</th>
+    <th>CRN</th>
     <th>Days</th>
-    <th>Time start</th>
-    <th>Time end</th>
     <th>Instructor</th>
-    <th>Course</th>
     <th></th>
     <th></th>
     <th></th>
@@ -22,11 +19,16 @@
     <td><%= section.term %></td>
     <td><%= section.section %></td>
     <td><%= section.crn %></td>
-    <td><%= section.days %></td>
-    <td><%= section.time_start %></td>
-    <td><%= section.time_end %></td>
-    <td><%= section.instructor %></td>
-    <td><%= section.course %></td>
+    <td>
+        <% section.time_start.each do |key, value| %>
+            <% string = key.capitalize[0].strip %>
+            <% if key.capitalize[0] == 'T' %>
+                <% string << key[1] %>
+            <% end %>
+            <%= string %>
+        <% end %>
+    </td>
+    <td><%= section.instructor.name %></td>
     <td><%= link_to 'Show', section %></td>
     <td><%= link_to 'Edit', edit_section_path(section) %></td>
     <td><%= link_to 'Destroy', section, method: :delete, data: { confirm: 'Are you sure?' } %></td>
