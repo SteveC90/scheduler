@@ -2,6 +2,7 @@
 
 <table class="table table-striped">
   <thead>
+    <th>Course</th>
     <th>Year</th>
     <th>Term</th>
     <th>Section</th>
@@ -15,6 +16,7 @@
 
 <% @sections.each do |section| %>
   <tr>
+    <td><%= section.course.subject.abrev+" "+section.course.number.to_s %></td>
     <td><%= section.year %></td>
     <td><%= section.term %></td>
     <td><%= section.section %></td>

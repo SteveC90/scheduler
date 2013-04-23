@@ -10,7 +10,7 @@
       <th>Subject</th>
       <th>Number</th>
       <th>Name</th>
-      <th>Sections</th>
+      <th>Sections<br/>(Click to View)</th>
       <th></th>
       <th></th>
       <th></th>
@@ -21,7 +21,7 @@
     <td><%= course.subject.abrev %></td>
     <td><%= course.number %></td>
     <td><%= course.name %></td>
-    <td><%= course.sections.length %></td>
+    <td><%= link_to course.sections.length, sections_url(:course_id => course.id) %></td>
     <% if User.find(session[:user_id]).courses.exists?(course) %>
     <td><%= image_tag 'icon_checkmark_green_small.png' %></td>
     <% else %>

@@ -12,6 +12,9 @@ class SectionsController < ApplicationController
   # GET /sections.json
   def index
     @sections = Section.all
+    if(params[:course_id])
+      @sections = Section.where(:course_id => params[:course_id])
+    end
 
     respond_to do |format|
       if !session[:user_id]
