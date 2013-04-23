@@ -24,6 +24,10 @@ Scheduler::Application.routes.draw do
 
   post "dynamic_courses/:id" => "sections#dynamic_courses"
 
+  post "add/:course_id" => "courses#add"
+
+  match '/users/add_courses', :controller => 'users', :action => 'add_courses'
+
   resources :users
 
 

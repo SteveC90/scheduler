@@ -3,7 +3,9 @@ class CoursesController < ApplicationController
   # GET /courses.json
   def index
     @courses = Course.all
-
+    # @year = 2013
+    # @term = "Spring"
+    
     respond_to do |format|
       if !session[:user_id]
         format.html {redirect_to home_url, notice: 'You must be logged in to access that page!'}
@@ -14,6 +16,14 @@ class CoursesController < ApplicationController
     end
   end
 
+  def add
+    @course = Course.find(params[:course_id])
+    @user = User.find(session[:user_id])
+
+    @user.courses << @course
+
+    redirect_to courses_url, notice: "Added #{@course.name} to list of completed classes."
+  end
   # GET /courses/1
   # GET /courses/1.json
   # def show

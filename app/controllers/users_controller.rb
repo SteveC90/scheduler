@@ -14,6 +14,13 @@ class UsersController < ApplicationController
     end
   end
 
+  def add_courses
+    if !session[:user_id]
+      redirect_to home_url, notice: 'You must be logged in to access that page'
+    end
+
+  end
+
   # GET /users/1
   # GET /users/1.json
   def show

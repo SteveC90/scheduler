@@ -7,6 +7,7 @@ class Course < ActiveRecord::Base
   validates :number, presence: true, length: { is: 3}, numericality: { only_integer: true }
   validates_associated :subject
 
+  has_and_belongs_to_many :users
   private
     def check_for_sections
     	if sections.empty?

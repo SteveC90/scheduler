@@ -13,6 +13,7 @@
       <th>Sections</th>
       <th></th>
       <th></th>
+      <th></th>
     </tr>
   </thead>
 <% @courses.each do |course| %>
@@ -21,6 +22,11 @@
     <td><%= course.number %></td>
     <td><%= course.name %></td>
     <td><%= course.sections.length %></td>
+    <% if User.find(session[:user_id]).courses.exists?(course) %>
+    <td><%= image_tag 'icon_checkmark_green_small.png' %></td>
+    <% else %>
+    <td><a href=<%=course.id%> class="taken">Completed?</td>
+    <%end%>
     <% if User.find_by_id(session[:user_id]).role != User::ROLES[0] %>
     <td><%= link_to 'Edit', edit_course_path(course) %></td>
     <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
