@@ -41,7 +41,7 @@ Scheduler::Application.configure do
       :storage => :s3,
       :s3_credentials => {
         :bucket => 'mines.edu',
-        :access_key_id => ENV['S3_KEY']
+        :access_key_id => ENV['S3_KEY'],
         :secret_access_key => ENV['S3_SECRET']
       }
   }
