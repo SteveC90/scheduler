@@ -100,17 +100,21 @@ class UsersController < ApplicationController
   # DELETE /users/1.json
   def destroy
     @user = User.find(params[:id])
-    if @user.id == session[:user_id]
-      session[:user_id] = nil
-    end
-    @user.destroy
+    if @user.role == User::ROLES[2] && User.where(:role => User::ROLES[2]).length==1
+      redirect_to users_url, :notice => 'Cannot delete last admin in the system.'
+    else
+      if @user.id == session[:user_id]
+        session[:user_id] = nil
+      end
+      @user.destroy
 
-    respond_to do |format|
-      if session[:user_id]
-        format.html { redirect_to users_url }
-      #format.json { head :no_content }
-      else
-        format.html { redirect_to home_url }
+      respond_to do |format|
+        if session[:user_id]
+          format.html { redirect_to users_url }
+        #format.json { head :no_content }
+        else
+          format.html { redirect_to home_url }
+        end
       end
     end
   end
