@@ -8,7 +8,6 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div id="wrap">
   	<div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
@@ -58,16 +57,18 @@
   	<div class="container">
   		<%= yield %>
   	</div> <!-- container -->
-  </div> <!-- wrap -->
   <div class="navbar navbar-inverse navbar-fixed-bottom">
     <div class="navbar-inner">
-      <div class="container">
-        <ul class="pull-left nav">
-          <li><a>Created by Esteban Chavez</a></li>
-        </ul>
+      <div class="container-fluid">
+        <div class="navbar-text pull-left">
+          <ul class="nav">
+            <li><a>Created by Esteban Chavez</a></li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
 
 </body>
 </html>
+  
