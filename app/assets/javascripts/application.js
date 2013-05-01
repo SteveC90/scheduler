@@ -16,6 +16,7 @@
 //= require_tree .
 $(document).ready( function(){
     window.setTimeout( function(){
-        $(".alert").slideUp();
-    }, 2000);
+        $(".alert-info").slideUp();
+    }, 3000);
+    $(".alert-warning").alert('close');
 });
